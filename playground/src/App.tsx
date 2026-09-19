@@ -1,8 +1,12 @@
+import { useState } from 'react'
 import { Disclosure } from './components/Disclosure'
+import { Modal } from './components/Modal'
 import { Tabs } from './components/Tabs'
 import './App.css'
 
 function App() {
+  const [modalOpen, setModalOpen] = useState(false)
+
   return (
     <main>
       <h1>Disclosure playground</h1>
@@ -37,6 +41,22 @@ function App() {
           },
         ]}
       />
+      <button type="button" onClick={() => setModalOpen(true)}>
+        Open modal
+      </button>
+      <Modal
+        open={modalOpen}
+        onClose={() => setModalOpen(false)}
+        title="Confirm changes"
+      >
+        <p>Your profile updates will be saved immediately.</p>
+        <button type="button" onClick={() => setModalOpen(false)}>
+          Save changes
+        </button>
+        <button type="button" onClick={() => setModalOpen(false)}>
+          Cancel
+        </button>
+      </Modal>
     </main>
   )
 }
